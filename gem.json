@@ -1,0 +1,34 @@
+{
+    "gem_name": "o3dimport",
+    "version": "1.0.0",
+    "display_name": "o3dImport python tool",
+    "license": "MIT",
+    "license_url": "",
+    "origin": "Galib Arrieta",
+    "origin_url": "https://github.com/galibzon/o3dimport",
+    "type": "Code",
+    "summary": " o3dImport python tool with o3dexport Blender AddOn",
+    "canonical_tags": [
+        "Gem"
+    ],
+    "user_tags": [
+        "Blender",
+        "Scene",
+        "Assets",
+        "o3dimport"
+    ],
+    "platforms": [
+        "Windows",
+        "Linux"
+    ],
+    "icon_path": "",
+    "requirements": "EditorPythonBindings",
+    "documentation_url": "",
+    "dependencies": [
+        "QtForPython"
+    ],
+    "repo_uri": "",
+    "compatible_engines": [],
+    "engine_api_dependencies": [],
+    "restricted": "o3dimport"
+}

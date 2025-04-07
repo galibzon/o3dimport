@@ -1,0 +1,18 @@
+{
+    "Amazon": {
+        "AssetProcessor": {
+            "Settings": {
+                "ScanFolder o3dimport/Assets": {
+                    "watch": "@GEMROOT:o3dimport@/Assets",
+                    "recursive": 1,
+                    "order": 101
+                },
+                "ScanFolder o3dimport/Registry": {
+                    "watch": "@GEMROOT:o3dimport@/Registry",
+                    "recursive": 1,
+                    "order": 102
+                }
+            }
+        }
+    }
+}
