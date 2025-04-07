@@ -14,6 +14,7 @@ import json
 import math
 import os
 import time
+import ctypes
 
 import azlmbr.asset as azasset
 
@@ -23,6 +24,7 @@ import azlmbr.editor as azeditor
 import azlmbr.entity as azentity
 import azlmbr.legacy.general as azgeneral
 import azlmbr.math as azmath
+import azlmbr.render as azrender
 
 # C:\GIT\o3de\AutomatedTesting\Gem\PythonTests\EditorPythonTestTools\editor_python_test_tools\editor_entity_utils.py
 from editor_python_test_tools.editor_entity_utils import EditorComponent, EditorEntity
@@ -229,7 +231,7 @@ class SceneImporter:
         measured_times.append(elapsed_time)
         print(f"Phase 4. Set mesh assets on all Mesh components. Duration: {elapsed_time} seconds.")
 
-        # Phase 5: Sets the mesh asset to all entities with Mesh component. Waits at least 2 frames after each asset is set.
+        # Phase 5: Sets the material assets to all entities with Material component. Waits at least 2 frames after each asset is set.
         self._BeginBatch()
         start_time = time.time()
         self._SetMaterialAssetToAllEntities()
@@ -462,17 +464,38 @@ class SceneImporter:
             materialList = entityData.sceneGraphData["materials"]
             materialChangedCount = 0
             for slotIndex, materialName in enumerate(materialList):
-                materialChangedCount += self._SetMaterialSlotAsset(entityData.materialComponent, slotIndex, materialName)
+                materialChangedCount += self._SetMaterialSlotAsset(entityData.materialComponent, materialName, len(materialList))
             if materialChangedCount > 0:
                 if VERBOSE:
                     print(f"Entity with name '{name}' got {materialChangedCount} material slots updated")
                 azgeneral.idle_wait_frames(3 * materialChangedCount)
 
+    
+    def _FindMaterialSlotIndexFromMaterialSlotLabel(self, materialComponent: EditorComponent, materialName: str, maxMaterialSlots: int) -> int:
+        entityId = materialComponent.id.get_entity_id()
+        noLod = ctypes.c_uint(-1)
+        matAssignmentId = azrender.MaterialComponentRequestBus(azbus.Event, "FindMaterialAssignmentId", entityId, noLod.value, materialName)
+        slotIndex = 0
+        while slotIndex < maxMaterialSlots:
+            propertyPath = f"Model Materials|[{slotIndex}]|Material Slot Stable Id"
+            try:
+                materialSlotStableId = materialComponent.get_component_property_value(propertyPath)
+                if materialSlotStableId == matAssignmentId.materialSlotStableId:
+                    return slotIndex
+            except:
+                pass
+            slotIndex += 1
+        print(f"Failed to find material slot index for entity={entityId}, material slot label={materialName}")
+        return -1 # Not found
 
-    def _SetMaterialSlotAsset(self, materialComponent: EditorComponent, materialSlotIndex: int, materialName: str) -> bool:
+
+    def _SetMaterialSlotAsset(self, materialComponent: EditorComponent, materialName: str, maxMaterialSlots: int) -> bool:
         """
         Returns True if the assetId in the given slot was updated.
         """
+        materialSlotIndex = self._FindMaterialSlotIndexFromMaterialSlotLabel(materialComponent, materialName, maxMaterialSlots)
+        if materialSlotIndex < 0:
+            return False
         azmaterialPath = self._assetPaths.GetMaterialAssetProductPath(materialName)
         propertyPath = f"Model Materials|[{materialSlotIndex}]|Material Asset"
         return self._SetComponentAssetProperty(

@@ -18,7 +18,7 @@ def LoadImageFileAsImageBuf(imageFilePath: str) -> oiio.ImageBuf:
     return oiio.ImageBuf(imageFilePath)
 
 def CreateImageBufFromColorChannel(imageBuf: oiio.ImageBuf, channel: int) -> oiio.ImageBuf:
-    singleChannelImageBuf = oiio.ImageBugAlgo.channels(imageBuf, (channel,))
+    singleChannelImageBuf = oiio.ImageBufAlgo.channels(imageBuf, (channel,))
     return singleChannelImageBuf
 
 # Old version using PIL, but required manual installation of `pillow`

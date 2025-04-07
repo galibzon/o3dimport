@@ -88,14 +88,16 @@ def ExportAssetsAndSceneGraph(
     if not exportSettings.CreateOutputDirs():
         raise Exception("Failed to create output directories")
     print("O3DEXPORT: Created output directories")
-    # First let's export the textures
-    for _, textureAsset in sceneGraph.GetTexturesDictionary().items():
-        for itor in texture_exporter.ExportTextureAsset(exportSettings, textureAsset):
-            yield itor
-    # Next, export the materials
+    # First, export the materials
+    # We export materials before textures because when exporting material we may update
+    # some TextureAsset(s) as Normal Maps, which changes their sanitized name.
     for materialName, material in sceneGraph.GetMaterialsDictionary().items():
         _ExportMaterial(exportSettings, material, sceneGraph.GetTexturesDictionary())
         yield f"O3DEXPORT: Exported Material '{materialName}'"
+    # Next, let's export the textures
+    for _, textureAsset in sceneGraph.GetTexturesDictionary().items():
+        for itor in texture_exporter.ExportTextureAsset(exportSettings, textureAsset):
+            yield itor
 
     # Next, export the meshes
     for meshName, meshAsset in sceneGraph.GetMeshesDictionary().items():

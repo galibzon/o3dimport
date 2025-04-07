@@ -331,10 +331,14 @@ class O3Material:
         return jsonStr
 
     def _GetSanitizedTexturePath(
-        self, posixAssetsRelativeTexturePath: str, textureName: str, colorChannel: str
+        self, posixAssetsRelativeTexturePath: str, textureName: str, colorChannel: str, isNormalMap: bool = False
     ) -> str:
         if textureName == "":
             return textureName
+        if isNormalMap:
+            self.texturesDictionary[
+                textureName
+            ].SanitizeNameAsNormalMap()
         if colorChannel == "":
             # This is a regular texture that is sampled for all available color channels
             sanitizedTextureName = self.texturesDictionary[
@@ -433,7 +437,7 @@ class O3Material:
                         else ""
                     )
                     dstDict["normal.textureMap"] = self._GetSanitizedTexturePath(
-                        posixAssetsRelativeTexturePath, textureName, colorChannel
+                        posixAssetsRelativeTexturePath, textureName, colorChannel, isNormalMap=True
                     )
                     dstDict["normal.useTexture"] = True
                 else:

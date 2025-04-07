@@ -32,45 +32,59 @@
 
 # Properties of Materia Component
 ```
-Info: LOD Materials (AZStd::vector<AZStd::vector<EditorMaterialComponentSlot, allocator>, allocator>,NotVisible)
-
 Info: Controller|Materials (AZStd::unordered_map<AZ::Render::MaterialAssignmentId, AZ::Render::MaterialAssignment, AZStd::hash<AZ::Render::MaterialAssignmentId>, AZStd::equal_to<AZ::Render::MaterialAssignmentId>, allocator>,Visible)
+
+Info: Controller|Materials|[0] (AZStd::pair<AZ::Render::MaterialAssignmentId, AZ::Render::MaterialAssignment>,Visible)
+Info: Controller|Materials|[0]|Key<AZ::Render::MaterialAssignmentId> (AZ::Render::MaterialAssignmentId,Visible)
+Info: Controller|Materials|[0]|Value<AZ::Render::MaterialAssignment> (AZ::Render::MaterialAssignment,Visible)
+Info: Controller|Materials|[0]|Value<AZ::Render::MaterialAssignment>|Property Overrides (AZStd::unordered_map<Name, AZStd::any, AZStd::hash<Name>, AZStd::equal_to<Name>, allocator>,Visible)
+
+
+
+
+Info: Controller|Materials|[1] (AZStd::pair<AZ::Render::MaterialAssignmentId, AZ::Render::MaterialAssignment>,Visible)
+Info: Controller|Materials|[1]|Value<AZ::Render::MaterialAssignment>|Property Overrides (AZStd::unordered_map<Name, AZStd::any, AZStd::hash<Name>, AZStd::equal_to<Name>, allocator>,Visible)
+Info: Controller|Materials|[1]|Value<AZ::Render::MaterialAssignment> (AZ::Render::MaterialAssignment,Visible)
+Info: Controller|Materials|[1]|Key<AZ::Render::MaterialAssignmentId> (AZ::Render::MaterialAssignmentId,Visible)
+
+
+Info: Controller|Materials|[2] (AZStd::pair<AZ::Render::MaterialAssignmentId, AZ::Render::MaterialAssignment>,Visible)
+Info: Controller|Materials|[2]|Value<AZ::Render::MaterialAssignment>|Property Overrides (AZStd::unordered_map<Name, AZStd::any, AZStd::hash<Name>, AZStd::equal_to<Name>, allocator>,Visible)
+Info: Controller|Materials|[2]|Value<AZ::Render::MaterialAssignment> (AZ::Render::MaterialAssignment,Visible)
+Info: Controller|Materials|[2]|Key<AZ::Render::MaterialAssignmentId> (AZ::Render::MaterialAssignmentId,Visible)
 
 Info: Model Materials (AZStd::vector<EditorMaterialComponentSlot, allocator>,Visible)
 
-Info: Controller|Materials|[0] (AZStd::pair<AZ::Render::MaterialAssignmentId, AZ::Render::MaterialAssignment>,Visible)
 
-Info: Controller|Materials|[0]|Value<AZ::Render::MaterialAssignment> (AZ::Render::MaterialAssignment,Visible)
 
+
+Info: LOD Materials (AZStd::vector<AZStd::vector<EditorMaterialComponentSlot, allocator>, allocator>,NotVisible)
 Info: LOD Materials|LOD 0 (AZStd::vector<EditorMaterialComponentSlot, allocator>,Visible)
 
-Info: Controller|Materials|[0]|Key<AZ::Render::MaterialAssignmentId> (AZ::Render::MaterialAssignmentId,Visible)
 
-Info: Controller|Materials|[0]|Value<AZ::Render::MaterialAssignment>|Property Overrides (AZStd::unordered_map<Name, AZStd::any, AZStd::hash<Name>, AZStd::equal_to<Name>, allocator>,Visible)
-
-|LOD Index: ('AZ::u64', 'Visible')
-
-|Material Slot Stable Id: ('unsigned int', 'Visible')
-
-Default Material|Material Slot Stable Id: ('unsigned int', 'Visible')
-
-Controller: ('MaterialComponentController', 'ShowChildrenOnly')
+|Material Asset: ('Asset<MaterialAsset>', 'Visible')
 
 ]|Material Asset: ('Asset<MaterialAsset>', 'Visible')
 
-Enable LOD Materials: ('bool', 'Visible')
-
 ]|LOD Index: ('AZ::u64', 'Visible')
+
+]: ('EditorMaterialComponentSlot', 'ShowChildrenOnly')
+
+Default Material|Material Slot Stable Id: ('unsigned int', 'Visible')
+
+Default Material: ('EditorMaterialComponentSlot', 'ShowChildrenOnly')
+
+Default Material|Material Asset: ('Asset<MaterialAsset>', 'Visible')
 
 Default Material|LOD Index: ('AZ::u64', 'Visible')
 
 ]|Material Slot Stable Id: ('unsigned int', 'Visible')
 
-]: ('EditorMaterialComponentSlot', 'ShowChildrenOnly')
+|Material Slot Stable Id: ('unsigned int', 'Visible')
 
-|Material Asset: ('Asset<MaterialAsset>', 'Visible')
+Controller: ('MaterialComponentController', 'ShowChildrenOnly')
 
-Default Material: ('EditorMaterialComponentSlot', 'ShowChildrenOnly')
+|LOD Index: ('AZ::u64', 'Visible')
 
-Default Material|Material Asset: ('Asset<MaterialAsset>', 'Visible')
+Enable LOD Materials: ('bool', 'Visible')
 ```

@@ -20,7 +20,7 @@ import bpy
 bl_info = {
     "name": "O3DEXPORT: Exports scenes, meshes, materials and textures to O3DE.",
     "author": "Galib F. Arrieta",
-    "version": (1, 0, 1),
+    "version": (1, 0, 2),
     "blender": (4, 1, 0),
     "location": "3D View > UI (Right Panel) > O3DEXPORT Tab",
     "description": ("Script to export scenes, meshes, materials and textures to O3DE"),

@@ -39,7 +39,7 @@ def _CreateResampledTexture(
     newImage = imageutils.CreateImageBufFromColorChannel(
         originalImageAsImageBuf, colorChhanelId
     )
-    newImage.save(resampledFinalOutputPath)
+    newImage.write(resampledFinalOutputPath)
     print(f"Created '{resampledFinalOutputPath}'")
 
 
